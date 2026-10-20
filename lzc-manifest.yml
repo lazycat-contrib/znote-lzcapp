@@ -7,11 +7,10 @@ application:
   upstreams:
     - location: /
       backend: http://znote:3888/
-
 services:
   znote:
     # upstream: helloz/znote:0.4.7
-    image: docker.1ms.run/helloz/znote:0.4.7@sha256:044f2116a9143b37276f50cac39393d78455135e4e275cf05ebae6451f17ca5a
+    image: docker.1ms.run/helloz/znote:0.4.7
     environment:
       - TZ=Asia/Shanghai
       - ZNOTE_APP_NAME=ZNote
