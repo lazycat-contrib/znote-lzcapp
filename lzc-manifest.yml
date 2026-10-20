@@ -1,0 +1,35 @@
+application:
+  subdomain: znote
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://znote:3888/
+
+services:
+  znote:
+    # upstream: helloz/znote:0.4.7
+    image: docker.1ms.run/helloz/znote:0.4.7@sha256:044f2116a9143b37276f50cac39393d78455135e4e275cf05ebae6451f17ca5a
+    environment:
+      - TZ=Asia/Shanghai
+      - ZNOTE_APP_NAME=ZNote
+      - ZNOTE_PORT=3888
+      - ZNOTE_CORS_ORIGIN=*
+      # 多用户注册开关（最多 5 用户）
+      - ZNOTE_ALLOW_REGISTER={{ .U.allow_register }}
+    binds:
+      - /lzcapp/var/znote:/app/data
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --no-verbose
+        - --tries=1
+        - --spider
+        - http://127.0.0.1:3888/
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 15s
