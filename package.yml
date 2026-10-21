@@ -1,5 +1,5 @@
 package: community.lazycat.app.znote
-version: 0.4.7
+version: 0.4.8
 name: ZNote
 description: "ZNote is a small and beautiful pure note app with native Markdown WYSIWYG editing"
 min_os_version: 1.5.0

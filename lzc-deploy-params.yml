@@ -1,14 +1,9 @@
 params:
   - id: allow_register
-    type: enum
+    type: bool
     name: "Open Registration"
     description: "Allow new user registration (max 5 users). First visit guides admin account creation"
     default_value: "false"
-    options:
-      - value: "false"
-        label: "Off"
-      - value: "true"
-        label: "On"
     optional: true
 
 locales:
@@ -16,8 +11,3 @@ locales:
     allow_register:
       name: "开放注册"
       description: "是否允许新用户注册（最多 5 个用户）。首次访问会引导创建管理员账号"
-      options:
-        - value: "false"
-          label: "关闭"
-        - value: "true"
-          label: "开启"
