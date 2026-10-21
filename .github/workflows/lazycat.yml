@@ -12,6 +12,11 @@ on:
       - lzc-deploy-params.yml
       - package.yml
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Optional SemVer to publish (overrides version source)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -24,6 +29,7 @@ jobs:
       operation: auto
       config: .github/lazycat-action.yml
       dry-run: ${{ github.event_name == 'pull_request' }}
+      version: ${{ inputs.version || '' }}
       versioned-release-asset: true
     secrets:
       APPSTORE_URL: ${{ secrets.APPSTORE_URL }}
